@@ -41,15 +41,16 @@ class BookController(private val bookService: BookService, private val bookForma
     }
 
     data class SearchTitleRequest(val title: String)
+
     @PostMapping("/search/title")
     fun findByTitle(@RequestBody request: SearchTitleRequest): List<Book> {
         return bookService.findByTitle(request.title)
     }
 
     data class SearchAuthorRequest(val author: String)
+
     @PostMapping("/search/author")
     fun findByAuthor(@RequestBody request: SearchAuthorRequest): List<Book> {
         return bookService.findByAuthor(request.author)
     }
-
 }
