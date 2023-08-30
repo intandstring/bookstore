@@ -16,4 +16,6 @@ class BookService(private val bookRepository: BookRepository) {
     fun deleteById(id: Long) = bookRepository.deleteById(id)
 
     fun findByTitle(title: String): List<Book> = bookRepository.findByTitle(title)
+
+    fun findByAuthor(author: String): List<Book> = bookRepository.findByAuthor(author)
 }

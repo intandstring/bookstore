@@ -10,22 +10,22 @@ import javax.validation.constraints.Size
 
 @Entity
 @Table(name = "books")
-data class Book (
+data class Book(
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Long? = null,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
 
-        @get: NotBlank
-        @get: Size(min = 2, max = 100)
-        var title: String,
+    @get: NotBlank
+    @get: Size(min = 2, max = 100)
+    var title: String,
 
-        @get: NotBlank
-        @get: Size(min = 2, max = 100)
-        var author: String,
+    @get: NotBlank
+    @get: Size(min = 2, max = 100)
+    var author: String,
 
-        var description: String? = null,
+    var description: String? = null,
 
-        var publishedYear: Int? = null
+    var publishedYear: Int? = null
 
 )
