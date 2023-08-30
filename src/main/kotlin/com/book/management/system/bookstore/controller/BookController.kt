@@ -3,6 +3,8 @@ package com.book.management.system.bookstore.controller
 import com.book.management.system.bookstore.model.Book
 import com.book.management.system.bookstore.service.BookService
 import com.book.management.system.bookstore.utils.BookFormatter
+import org.springframework.cache.annotation.CacheEvict
+import org.springframework.cache.annotation.Cacheable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -21,9 +23,11 @@ class BookController(private val bookService: BookService, private val bookForma
         return ResponseEntity.ok(bookService.findAll())
     }
 
+    @Cacheable(value = ["books"], key = "#id")
     @GetMapping("/{id}")
     fun getBookId(@PathVariable id: Long): ResponseEntity<Book> {
         val book = bookService.findById(id)
+        println("Accessed")
         return if (book != null) ResponseEntity.ok(book) else ResponseEntity.notFound().build()
     }
 
@@ -34,6 +38,7 @@ class BookController(private val bookService: BookService, private val bookForma
         return savedBook
     }
 
+    @CacheEvict(value = ["books"], key = "#id")
     @DeleteMapping("/{id}")
     fun deleteBook(@PathVariable id: Long): ResponseEntity<Void> {
         bookService.deleteById(id)

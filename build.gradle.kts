@@ -29,6 +29,8 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("org.postgresql:postgresql:42.2.27")
+    implementation("org.springframework.boot:spring-boot-starter-cache")
+    implementation("com.github.ben-manes.caffeine:caffeine")
 }
 
 tasks.withType<KotlinCompile> {
